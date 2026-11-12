@@ -1,0 +1,315 @@
+:root {
+  --font-size-base: 15px;
+  --reading-width: 880px;
+  --bg: #f7f3ec;
+  --bg-elevated: #fffdf9;
+  --text: #2a211b;
+  --text-muted: #7a6a58;
+  --border: #e6dccb;
+  --primary: #9a3412;
+  --primary-soft: #fbeee4;
+  --gold: #b45309;
+
+  /* 命盘主题（classic 古典） */
+  --chart-bg: #fffaf1;
+  --chart-cell-bg: #fffdf8;
+  --chart-border: #c9b48f;
+  --chart-frame: #7c2d12;
+  --chart-center-bg: #fbf3e2;
+  --chart-major: #b91c1c;
+  --chart-minor: #1d4ed8;
+  --chart-adj: #6b7280;
+  --chart-palace: #7c2d12;
+  --chart-highlight: #fde8c8;
+  --chart-target: #fcd9a8;
+  --mut-lu: #15803d;
+  --mut-quan: #b45309;
+  --mut-ke: #1d4ed8;
+  --mut-ji: #b91c1c;
+  --decadal-color: #7e22ce;
+  --yearly-color: #0f766e;
+}
+
+html.dark {
+  --bg: #16130f;
+  --bg-elevated: #1f1b16;
+  --text: #ece4d8;
+  --text-muted: #a8998a;
+  --border: #3a3128;
+  --primary: #f0a273;
+  --primary-soft: #3a261b;
+  --gold: #e0a458;
+
+  --chart-bg: #1b1713;
+  --chart-cell-bg: #211c17;
+  --chart-border: #4c3f30;
+  --chart-frame: #c2703d;
+  --chart-center-bg: #261f18;
+  --chart-major: #f87171;
+  --chart-minor: #7aa2ff;
+  --chart-adj: #a3a3a3;
+  --chart-palace: #f0a273;
+  --chart-highlight: #3b2c1c;
+  --chart-target: #553a20;
+  --mut-lu: #4ade80;
+  --mut-quan: #fbbf24;
+  --mut-ke: #93c5fd;
+  --mut-ji: #f87171;
+  --decadal-color: #c084fc;
+  --yearly-color: #2dd4bf;
+}
+
+/* 命盘主题：水墨 */
+.chart-theme-ink {
+  --chart-bg: #f6f6f4;
+  --chart-cell-bg: #fbfbfa;
+  --chart-border: #b8b8b2;
+  --chart-frame: #2b2b2b;
+  --chart-center-bg: #efefeb;
+  --chart-major: #111827;
+  --chart-minor: #374151;
+  --chart-adj: #8b8b8b;
+  --chart-palace: #1f2937;
+  --chart-highlight: #e5e7eb;
+  --chart-target: #d1d5db;
+}
+html.dark .chart-theme-ink {
+  --chart-bg: #151515;
+  --chart-cell-bg: #1c1c1c;
+  --chart-border: #3d3d3d;
+  --chart-frame: #a3a3a3;
+  --chart-center-bg: #202020;
+  --chart-major: #f3f4f6;
+  --chart-minor: #d1d5db;
+  --chart-adj: #8b8b8b;
+  --chart-palace: #e5e7eb;
+  --chart-highlight: #2a2a2a;
+  --chart-target: #3a3a3a;
+}
+/* 命盘主题：朱砂 */
+.chart-theme-cinnabar {
+  --chart-bg: #fff4f0;
+  --chart-cell-bg: #fffaf8;
+  --chart-border: #e3a99a;
+  --chart-frame: #9f1d1d;
+  --chart-center-bg: #fde7df;
+  --chart-major: #9f1d1d;
+  --chart-minor: #7c2d12;
+  --chart-palace: #9f1d1d;
+  --chart-highlight: #fdd9cc;
+  --chart-target: #fbbfa9;
+}
+html.dark .chart-theme-cinnabar {
+  --chart-bg: #1f1312;
+  --chart-cell-bg: #251716;
+  --chart-border: #5c2b25;
+  --chart-frame: #e06c5a;
+  --chart-center-bg: #2b1a18;
+  --chart-major: #fb7c6b;
+  --chart-minor: #f4a26e;
+  --chart-palace: #fb9a8a;
+  --chart-highlight: #3d2420;
+  --chart-target: #5a2e27;
+}
+/* 命盘主题：青黛 */
+.chart-theme-azure {
+  --chart-bg: #f1f6fa;
+  --chart-cell-bg: #f9fbfd;
+  --chart-border: #9fb8cc;
+  --chart-frame: #1e3a5f;
+  --chart-center-bg: #e4eef6;
+  --chart-major: #1e3a8a;
+  --chart-minor: #0e7490;
+  --chart-palace: #1e3a5f;
+  --chart-highlight: #dbeafe;
+  --chart-target: #bfdbfe;
+}
+html.dark .chart-theme-azure {
+  --chart-bg: #111820;
+  --chart-cell-bg: #151e28;
+  --chart-border: #2c4155;
+  --chart-frame: #6aa5d8;
+  --chart-center-bg: #172230;
+  --chart-major: #93c5fd;
+  --chart-minor: #67e8f9;
+  --chart-palace: #93c5fd;
+  --chart-highlight: #1d2f44;
+  --chart-target: #24405e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--font-size-base);
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Source Han Sans SC', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary);
+}
+
+.serif {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', 'STSong', serif;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 4px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.small {
+  font-size: 0.85em;
+}
+
+.flex {
+  display: flex;
+}
+.gap-8 {
+  gap: 8px;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Markdown 报告 */
+.markdown-body {
+  line-height: 1.85;
+  word-break: break-word;
+  font-size: 1rem;
+}
+.markdown-body h1 {
+  font-size: 1.6em;
+  color: var(--primary);
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 6px;
+}
+.markdown-body h2 {
+  font-size: 1.32em;
+  color: var(--primary);
+  border-left: 4px solid var(--gold);
+  padding-left: 10px;
+  margin-top: 1.6em;
+}
+.markdown-body h3 {
+  font-size: 1.12em;
+  color: var(--gold);
+  margin-top: 1.3em;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  scroll-margin-top: 80px;
+}
+.markdown-body blockquote {
+  margin: 12px 0;
+  padding: 8px 14px;
+  border-left: 4px solid var(--gold);
+  background: var(--primary-soft);
+  color: var(--text);
+  border-radius: 0 6px 6px 0;
+}
+.markdown-body .md-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+.markdown-body table {
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: 0.92em;
+}
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.markdown-body th {
+  background: var(--primary-soft);
+  white-space: nowrap;
+}
+.markdown-body pre {
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 0.88em;
+  white-space: pre-wrap;
+}
+.markdown-body code {
+  font-family: Consolas, 'Courier New', monospace;
+}
+.markdown-body :not(pre) > code {
+  background: var(--primary-soft);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.markdown-body hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 24px 0;
+}
+.markdown-body strong {
+  color: var(--primary);
+}
+.md-fallback {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+html.dark .hljs {
+  background: #1b1713 !important;
+  color: #e6dccb;
+}
+
+.blink-cursor::after {
+  content: '▍';
+  animation: blink 1s steps(2, start) infinite;
+  color: var(--primary);
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 12px 10px 40px;
+  }
+  .page-title {
+    font-size: 1.25rem;
+  }
+}
